@@ -1,5 +1,5 @@
 const int relay1 = 7;
-cosnt int relay2 = 8;
+const int relay2 = 8;
 
 int serialData = 1;
 
@@ -36,11 +36,11 @@ void loop() {
     right();
    }
    
-   else if(serialData == '5') 
+   else if(serialData == '5'){ 
    }
    
 }
-
+}
 void forward() {
 
 digitalWrite(relay1, HIGH);
@@ -58,6 +58,11 @@ digitalWrite(relay1, LOW);
 void off() {
 
 digitalWrite(relay1, LOW);
-digitalWrite(realy2, LOW);
+digitalWrite(relay2, LOW);
   
+}
+
+void right(){
+  Serial.println("right");
+  loop();
 }
