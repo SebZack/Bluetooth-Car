@@ -1,4 +1,5 @@
 const int relay1 = 7;
+const int relay2 = 8;
 
 int serialData = 1;
 
@@ -7,6 +8,7 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   pinMode(relay1, OUTPUT);
+  pinMode(relay2, OUTPUT);
   Serial.println("Hello World");
 }
 
@@ -19,21 +21,52 @@ void loop() {
     
    if(serialData == '1'){
       Serial.println("1");
-      digitalWrite(relay1, HIGH);
+      forward();
     }
    else if(serialData == '2') {
     Serial.println("2");
-    digitalWrite(relay1, LOW);
+    off();
    }
    else if(serialData == '3') {
     Serial.println("3");
+    backwards();
    }
    else if(serialData == '4') {
     Serial.println("4");
-   }
-   else{
-      delay(1);
-   }
+    right();
    }
    
+   else if(serialData == '5'){ 
+   }
+   
+}
+}
+void forward() {
+
+   digitalWrite(relay1, HIGH);
+   digitalWrite(relay2, LOW);
+   delay(50);
+   loop();
+}
+
+void backwards() {
+  
+  digitalWrite(relay2, HIGH);
+  digitalWrite(relay1, LOW);
+  delay(50);
+  loop();
+}
+
+void off() {
+
+  digitalWrite(relay1, LOW);
+  digitalWrite(relay2, LOW);
+  delay(50);
+  loop();
+}
+
+void right(){
+  Serial.println("right");
+  delay(50);
+  loop();
 }
