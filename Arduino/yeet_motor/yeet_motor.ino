@@ -43,26 +43,30 @@ void loop() {
 }
 void forward() {
 
-digitalWrite(relay1, HIGH);
-digitalWrite(relay2, LOW);
-  
+   digitalWrite(relay1, HIGH);
+   digitalWrite(relay2, LOW);
+   delay(50);
+   loop();
 }
 
 void backwards() {
   
-digitalWrite(relay2, HIGH);
-digitalWrite(relay1, LOW);
-  
+  digitalWrite(relay2, HIGH);
+  digitalWrite(relay1, LOW);
+  delay(50);
+  loop();
 }
 
 void off() {
 
-digitalWrite(relay1, LOW);
-digitalWrite(relay2, LOW);
-  
+  digitalWrite(relay1, LOW);
+  digitalWrite(relay2, LOW);
+  delay(50);
+  loop();
 }
 
 void right(){
   Serial.println("right");
+  delay(50);
   loop();
 }
