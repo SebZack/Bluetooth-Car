@@ -1,9 +1,12 @@
+#include <Servo.h> 
+
 const int relay1 = 7;
 const int relay2 = 8;
 const int tuta = 9;
-
+int servoPin = 3;
 int serialData = 1;
 
+Servo Servo1;
 
 void setup() {
   // put your setup code here, to run once:
@@ -11,6 +14,8 @@ void setup() {
   pinMode(relay1, OUTPUT);
   pinMode(relay2, OUTPUT);
   pinMode(tuta, OUTPUT);
+  Servo1.attach(servoPin);
+  Servo1.write(0); //Set servo to 0 degrees
   Serial.println("Hello World");
 }
 
@@ -46,6 +51,7 @@ void forward() {
 
    digitalWrite(relay1, HIGH);
    digitalWrite(relay2, LOW);
+   Servo1.write(0);
    Serial.println("forward");
    delay(50);
    loop();
@@ -71,6 +77,7 @@ void off() {
 
 void right(){
   Serial.println("right");
+  Servo1.write(90);
   delay(50);
   loop();
 }
