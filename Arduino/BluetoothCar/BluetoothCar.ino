@@ -1,6 +1,6 @@
 #include <Servo.h> 
 
-const int relay1 = 7;
+const int relay1 = 6;
 const int relay2 = 8;
 const int tuta = 9;
 int servoPin = 3;
@@ -14,9 +14,11 @@ void setup() {
   pinMode(relay1, OUTPUT);
   pinMode(relay2, OUTPUT);
   pinMode(tuta, OUTPUT);
+  pinMode(12, OUTPUT);
+  digitalWrite(12, HIGH);
   Servo1.attach(servoPin);
   Servo1.write(0); //Set servo to 0 degrees
-  Serial.println("Hello World");
+  Serial.println("Hej Världen");
 }
 
 void loop() {
@@ -51,8 +53,8 @@ void forward() {
 
    digitalWrite(relay1, HIGH);
    digitalWrite(relay2, LOW);
-   Servo1.write(0);
-   Serial.println("forward");
+   Servo1.write(90);
+   Serial.println("fram");
    delay(50);
    loop();
 }
@@ -61,7 +63,7 @@ void backwards() {
   
   digitalWrite(relay2, HIGH);
   digitalWrite(relay1, LOW);
-  Serial.println("backwards");
+  Serial.println("bak");
   delay(50);
   loop();
 }
@@ -70,20 +72,21 @@ void off() {
 
   digitalWrite(relay1, LOW);
   digitalWrite(relay2, LOW);
-  Serial.println("off");
+  Serial.println("stopp");
   delay(50);
   loop();
 }
 
 void right(){
-  Serial.println("right");
-  Servo1.write(90);
+  Serial.println("höger");
+  Servo1.write(140);
   delay(50);
   loop();
 }
 
 void left(){
-  Serial.println("left");
+  Serial.println("vänster");
+  Servo1.write(10);
   delay(50);
   loop();
 }
