@@ -17,10 +17,11 @@ void setup() {
   pinMode(relay2, OUTPUT);
   pinMode(tuta, OUTPUT);
   pinMode(12, OUTPUT);
+  pinMode(rLight, OUTPUT);
+  pinMode(lLight, OUTPUT);
   digitalWrite(12, HIGH);
   Servo1.attach(servoPin);
-  Servo1.write(0); //Set servo to 0 degrees
-  Serial.println("Hej Världen");
+  Servo1.write(90); //Set servo to 0 degrees
   lightsOn();
 }
 
@@ -115,9 +116,11 @@ void tut(){
 void lightsOn(){
   digitalWrite(rLight, HIGH);
   digitalWrite(lLight, HIGH);
+  loop();
 }
 
 void lightsOff(){
   digitalWrite(rLight, LOW);
   digitalWrite(lLight, LOW);
+  loop();
 }
