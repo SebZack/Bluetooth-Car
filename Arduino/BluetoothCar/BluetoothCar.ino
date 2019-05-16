@@ -3,7 +3,9 @@
 const int relay1 = 6;
 const int relay2 = 8;
 const int tuta = 9;
-int servoPin = 3;
+const int rLight = 10;
+const int lLight = 11;
+const int servoPin = 3;
 int serialData = 1;
 
 Servo Servo1;
@@ -19,6 +21,7 @@ void setup() {
   Servo1.attach(servoPin);
   Servo1.write(0); //Set servo to 0 degrees
   Serial.println("Hej Världen");
+  lightsOn();
 }
 
 void loop() {
@@ -46,7 +49,12 @@ void loop() {
    else if(serialData == '6'){ 
     off();
    }
-   
+   else if(serialData == '7'){ 
+    lightsOn();
+   }
+   else if(serialData == '8'){ 
+    lightsOff();
+   }
 }
 }
 void forward() {
@@ -79,14 +87,14 @@ void off() {
 
 void right(){
   Serial.println("höger");
-  Servo1.write(140);
+  Servo1.write(10);
   delay(50);
   loop();
 }
 
 void left(){
   Serial.println("vänster");
-  Servo1.write(10);
+  Servo1.write(140);
   delay(50);
   loop();
 }
@@ -94,12 +102,22 @@ void left(){
 void tut(){
   Serial.println("tut");
   digitalWrite(tuta, HIGH);
-  delay(1000);
+  delay(100);
   digitalWrite(tuta, LOW);
-  delay(500);
+  delay(50);
   digitalWrite(tuta, HIGH);
-  delay(1000);
+  delay(100);
   digitalWrite(tuta, LOW);
   delay(80);
   loop();
+}
+
+void lightsOn(){
+  digitalWrite(rLight, HIGH);
+  digitalWrite(lLight, HIGH);
+}
+
+void lightsOff(){
+  digitalWrite(rLight, LOW);
+  digitalWrite(lLight, LOW);
 }
