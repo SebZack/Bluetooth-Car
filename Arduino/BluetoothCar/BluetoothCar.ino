@@ -21,8 +21,8 @@ void setup() {
   pinMode(lLight, OUTPUT);
   digitalWrite(12, HIGH);
   Servo1.attach(servoPin);
-  Servo1.write(90); //Set servo to 0 degrees
-  lightsOn();
+  Servo1.write(90);       //Set steering framåt
+  lightsOn();             //Lights on
 }
 
 void loop() {
@@ -33,7 +33,7 @@ void loop() {
     serialData = Serial.read();
     
    if(serialData == '1'){
-      forward();
+     forward();
     }
    else if(serialData == '2') {
     backwards();
@@ -81,6 +81,7 @@ void off() {
 
   digitalWrite(relay1, LOW);
   digitalWrite(relay2, LOW);
+  Servo1.write(90);       //Set steering framåt
   Serial.println("stopp");
   delay(50);
   loop();
