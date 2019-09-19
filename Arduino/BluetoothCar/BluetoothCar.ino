@@ -7,7 +7,8 @@
  * Blue -> D1
  */
 
-#include <Servo.h> 
+#include <Servo.h>
+#include <SoftwareSerial.h>
 
 const int relayF = 6;
 const int relayB = 5;
@@ -18,6 +19,7 @@ const int servoPin = 3;
 int serialData = 1;
 
 Servo Servo1;
+SoftwareSerial BT(10, 11); 
 
 void setup() {
   // put your setup code here, to run once:
@@ -38,8 +40,9 @@ void loop() {
   // put your main code here, to run repeatedly:
   
   
-  if(Serial.available() > 0){
-    serialData = Serial.read();
+  if(BT.available() > 0){
+    serialData = BT.read();
+    Serial.println(serialData);
     
    if(serialData == '1'){
      forward();
@@ -82,7 +85,7 @@ void forward() {
 
 void backwards() {
   
-  digitalWrite(relay2, HIGH);
+  digitalWrite(relayB, HIGH);
   digitalWrite(relayF, LOW);
   Serial.println("bak");
   delay(50);
