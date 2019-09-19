@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*
  * Bluetooth Controlled Car made by Emil and Sebbe.
  * GitHub Repo: https://github.com/SebZack/Bluetooth-Car
@@ -8,14 +7,10 @@
  * Blue -> D1
  */
 
-#include <Servo.h>
-#include <SoftwareSerial.h>
-=======
 #include <Servo.h> 
->>>>>>> parent of ad81871... Update BluetoothCar.ino
 
-const int relay1 = 6;
-const int relay2 = 8;
+const int relayF = 6;
+const int relayB = 5;
 const int tuta = 9;
 const int rLight = 10;
 const int lLight = 11;
@@ -23,13 +18,12 @@ const int servoPin = 3;
 int serialData = 1;
 
 Servo Servo1;
-SoftwareSerial BT(10, 11); 
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  pinMode(relay1, OUTPUT);
-  pinMode(relay2, OUTPUT);
+  pinMode(relayF, OUTPUT);
+  pinMode(relayB, OUTPUT);
   pinMode(tuta, OUTPUT);
   pinMode(12, OUTPUT);
   pinMode(rLight, OUTPUT);
@@ -44,9 +38,8 @@ void loop() {
   // put your main code here, to run repeatedly:
   
   
-  if(BT.available() > 0){
-    serialData = BT.read();
-    Serial.println(serialData);
+  if(Serial.available() > 0){
+    serialData = Serial.read();
     
    if(serialData == '1'){
      forward();
@@ -72,12 +65,15 @@ void loop() {
    else if(serialData == '8'){ 
     lightsOff();
    }
+   else if(serialData >= '9'){
+    Serial.println("error, too big input");
+   }
 }
 }
 void forward() {
 
-   digitalWrite(relay1, HIGH);
-   digitalWrite(relay2, LOW);
+   digitalWrite(relayF, HIGH);
+   digitalWrite(relayB, LOW);
    Servo1.write(90);
    Serial.println("fram");
    delay(50);
@@ -86,13 +82,8 @@ void forward() {
 
 void backwards() {
   
-<<<<<<< HEAD
-  digitalWrite(relayB, HIGH);
-  digitalWrite(relayF, LOW);
-=======
   digitalWrite(relay2, HIGH);
-  digitalWrite(relay1, LOW);
->>>>>>> parent of ad81871... Update BluetoothCar.ino
+  digitalWrite(relayF, LOW);
   Serial.println("bak");
   delay(50);
   loop();
@@ -100,8 +91,8 @@ void backwards() {
 
 void off() {
 
-  digitalWrite(relay1, LOW);
-  digitalWrite(relay2, LOW);
+  digitalWrite(relayF, LOW);
+  digitalWrite(relayB, LOW);
   Servo1.write(90);       //Set steering framåt
   Serial.println("stopp");
   delay(50);
@@ -110,7 +101,7 @@ void off() {
 
 void right(){
   Serial.println("höger");
-  Servo1.write(10);
+  Servo1.write(30);
   delay(50);
   loop();
 }
@@ -138,11 +129,13 @@ void tut(){
 void lightsOn(){
   digitalWrite(rLight, HIGH);
   digitalWrite(lLight, HIGH);
+  Serial.println("Lampor PÅ");
   loop();
 }
 
 void lightsOff(){
   digitalWrite(rLight, LOW);
   digitalWrite(lLight, LOW);
+  Serial.println("Lampor AV");
   loop();
 }
