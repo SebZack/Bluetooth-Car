@@ -82,7 +82,7 @@ void forward() {
 
 void backwards() {
   
-  digitalWrite(relay2, HIGH);
+  digitalWrite(relayB, HIGH);
   digitalWrite(relayF, LOW);
   Serial.println("bak");
   delay(50);
