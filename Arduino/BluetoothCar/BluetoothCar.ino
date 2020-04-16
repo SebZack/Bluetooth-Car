@@ -10,7 +10,6 @@
 #include <Servo.h> 
 
 const int relayF = 6;
-const int relayB = 5;
 const int tuta = 9;
 const int rLight = 10;
 const int lLight = 11;
@@ -23,7 +22,6 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   pinMode(relayF, OUTPUT);
-  pinMode(relayB, OUTPUT);
   pinMode(tuta, OUTPUT);
   pinMode(12, OUTPUT);
   pinMode(rLight, OUTPUT);
@@ -45,27 +43,23 @@ void loop() {
      forward();
     }
    else if(serialData == '2') {
-    backwards();
-   }
-   else if(serialData == '3') {
     right();
    }
-   else if(serialData == '4') {
-    left();
+   else if(serialData == '3') {
    }
-   else if(serialData == '5'){ 
+   else if(serialData == '4'){ 
     tut();
    }
-   else if(serialData == '6'){ 
+   else if(serialData == '5'){ 
     off();
    }
-   else if(serialData == '7'){ 
+   else if(serialData == '6'){ 
     lightsOn();
    }
-   else if(serialData == '8'){ 
+   else if(serialData == '7'){ 
     lightsOff();
    }
-   else if(serialData >= '9'){
+   else if(serialData >= '8'){
     Serial.println("error, too big input");
    }
 }
@@ -73,26 +67,17 @@ void loop() {
 void forward() {
 
    digitalWrite(relayF, HIGH);
-   digitalWrite(relayB, LOW);
    Servo1.write(90);
    Serial.println("fram");
    delay(50);
    loop();
 }
 
-void backwards() {
-  
-  digitalWrite(relayB, HIGH);
-  digitalWrite(relayF, LOW);
-  Serial.println("bak");
-  delay(50);
-  loop();
-}
+
 
 void off() {
 
   digitalWrite(relayF, LOW);
-  digitalWrite(relayB, LOW);
   Servo1.write(90);       //Set steering framåt
   Serial.println("stopp");
   delay(50);
