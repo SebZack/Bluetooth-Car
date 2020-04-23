@@ -1,5 +1,5 @@
 /*
- * Bluetooth Controlled Car made by Emil and Sebbe.
+ * Bluetooth Controlled Car made by Emil and Sebastian.
  * GitHub Repo: https://github.com/SebZack/Bluetooth-Car
  * 
  * HC-06 Bluetooth Chip.
@@ -33,8 +33,6 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  
   
   if(Serial.available() > 0){
     serialData = Serial.read();
