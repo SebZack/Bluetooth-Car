@@ -10,10 +10,9 @@
 #include <Servo.h> 
 
 const int relayF = 6;
-const int tuta = 9;
 const int rLight = 10;
 const int lLight = 11;
-const int servoPin = 3;
+const int servoPin = 9;
 int serialData = 1;
 
 Servo Servo1;
@@ -22,14 +21,13 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   pinMode(relayF, OUTPUT);
-  pinMode(tuta, OUTPUT);
+  //pinMode(tuta, OUTPUT);
   pinMode(12, OUTPUT);
   pinMode(rLight, OUTPUT);
   pinMode(lLight, OUTPUT);
   digitalWrite(12, HIGH);
   Servo1.attach(servoPin);
-  Servo1.write(90);       //Set steering framåt
-  lightsOn();             //Lights on
+  Servo1.write(0);       //Set steering framåt
 }
 
 void loop() {
@@ -44,9 +42,10 @@ void loop() {
     right();
    }
    else if(serialData == '3') {
+    left();
    }
    else if(serialData == '4'){ 
-    tut();
+    //tut();
    }
    else if(serialData == '5'){ 
     off();
@@ -65,7 +64,7 @@ void loop() {
 void forward() {
 
    digitalWrite(relayF, HIGH);
-   Servo1.write(90);
+   Servo1.write(0);
    Serial.println("fram");
    delay(50);
    loop();
@@ -96,6 +95,7 @@ void left(){
   loop();
 }
 
+/**
 void tut(){
   Serial.println("tut");
   digitalWrite(tuta, HIGH);
@@ -108,6 +108,7 @@ void tut(){
   delay(80);
   loop();
 }
+**/
 
 void lightsOn(){
   digitalWrite(rLight, HIGH);
